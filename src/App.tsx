@@ -8,6 +8,11 @@ import { DashboardLayout } from "@/components/layout/DashboardLayout";
 import Index from "./pages/Index";
 import Auth from "./pages/Auth";
 import Dashboard from "./pages/Dashboard";
+import POS from "./pages/POS";
+import Products from "./pages/Products";
+import Categories from "./pages/Categories";
+import Customers from "./pages/Customers";
+import Transactions from "./pages/Transactions";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -25,6 +30,31 @@ const App = () => (
             <Route path="/dashboard" element={
               <DashboardLayout>
                 <Dashboard />
+              </DashboardLayout>
+            } />
+            <Route path="/pos" element={
+              <DashboardLayout>
+                <POS />
+              </DashboardLayout>
+            } />
+            <Route path="/products" element={
+              <DashboardLayout>
+                <Products />
+              </DashboardLayout>
+            } />
+            <Route path="/categories" element={
+              <DashboardLayout>
+                <Categories />
+              </DashboardLayout>
+            } />
+            <Route path="/customers" element={
+              <DashboardLayout>
+                <Customers />
+              </DashboardLayout>
+            } />
+            <Route path="/transactions" element={
+              <DashboardLayout>
+                <Transactions />
               </DashboardLayout>
             } />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
