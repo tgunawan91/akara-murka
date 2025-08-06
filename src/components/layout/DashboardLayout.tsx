@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { useAuth } from '@/contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { Sidebar } from './Sidebar';
+import { AppSidebar } from './AppSidebar';
 import { Toaster } from '@/components/ui/toaster';
+import { SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -31,16 +32,24 @@ export const DashboardLayout = ({ children }: DashboardLayoutProps) => {
   }
 
   return (
-    <div className="flex h-screen bg-background">
-      <div className="hidden md:flex md:w-64 md:flex-col">
-        <Sidebar />
+    <SidebarProvider>
+      <div className="min-h-screen flex w-full bg-background">
+        <AppSidebar />
+        
+        <div className="flex-1 flex flex-col">
+          {/* Mobile header with sidebar trigger */}
+          <header className="flex md:hidden items-center h-14 px-4 border-b bg-background">
+            <SidebarTrigger />
+            <h1 className="ml-3 font-semibold text-foreground">Swift POS</h1>
+          </header>
+          
+          <main className="flex-1 overflow-y-auto">
+            {children}
+          </main>
+        </div>
+        
+        <Toaster />
       </div>
-      <div className="flex-1 flex flex-col overflow-hidden">
-        <main className="flex-1 overflow-y-auto">
-          {children}
-        </main>
-      </div>
-      <Toaster />
-    </div>
+    </SidebarProvider>
   );
 };
