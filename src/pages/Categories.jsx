@@ -24,20 +24,13 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
-interface Category {
-  id: string;
-  name: string;
-  description?: string;
-  created_at: string;
-}
-
 const Categories = () => {
   const { profile } = useAuth();
   const { toast } = useToast();
-  const [categories, setCategories] = useState<Category[]>([]);
+  const [categories, setCategories] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [editingCategory, setEditingCategory] = useState<Category | null>(null);
+  const [editingCategory, setEditingCategory] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const [formData, setFormData] = useState({
@@ -70,7 +63,7 @@ const Categories = () => {
     setEditingCategory(null);
   };
 
-  const openDialog = (category?: Category) => {
+  const openDialog = (category) => {
     if (category) {
       setEditingCategory(category);
       setFormData({
@@ -88,7 +81,7 @@ const Categories = () => {
     resetForm();
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -135,7 +128,7 @@ const Categories = () => {
     }
   };
 
-  const deleteCategory = async (categoryId: string) => {
+  const deleteCategory = async (categoryId) => {
     if (!confirm('Apakah Anda yakin ingin menghapus kategori ini?')) return;
 
     try {

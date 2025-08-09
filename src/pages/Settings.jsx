@@ -12,13 +12,6 @@ import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
-interface OutletSettings {
-  id: string;
-  name: string;
-  address: string;
-  phone: string;
-}
-
 export default function Settings() {
   const { profile, user } = useAuth();
   const { toast } = useToast();
@@ -29,7 +22,7 @@ export default function Settings() {
   const [phone, setPhone] = useState('');
   
   // Outlet settings
-  const [outletData, setOutletData] = useState<OutletSettings | null>(null);
+  const [outletData, setOutletData] = useState(null);
   const [outletName, setOutletName] = useState('');
   const [outletAddress, setOutletAddress] = useState('');
   const [outletPhone, setOutletPhone] = useState('');

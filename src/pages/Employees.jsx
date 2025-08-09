@@ -13,29 +13,19 @@ import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
-interface Employee {
-  id: string;
-  full_name: string;
-  phone: string;
-  role: string;
-  is_active: boolean;
-  created_at: string;
-  user_id: string;
-}
-
 export default function Employees() {
   const { profile } = useAuth();
   const { toast } = useToast();
-  const [employees, setEmployees] = useState<Employee[]>([]);
+  const [employees, setEmployees] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [editingEmployee, setEditingEmployee] = useState<Employee | null>(null);
+  const [editingEmployee, setEditingEmployee] = useState(null);
   
   // Form states
   const [fullName, setFullName] = useState('');
   const [phone, setPhone] = useState('');
-  const [role, setRole] = useState<'admin' | 'kasir' | 'owner'>('kasir');
+  const [role, setRole] = useState('kasir');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -109,15 +99,15 @@ export default function Employees() {
     }
   };
 
-  const handleEdit = (employee: Employee) => {
+  const handleEdit = (employee) => {
     setEditingEmployee(employee);
     setFullName(employee.full_name);
     setPhone(employee.phone || '');
-    setRole(employee.role as 'admin' | 'kasir' | 'owner');
+    setRole(employee.role);
     setIsDialogOpen(true);
   };
 
-  const handleToggleStatus = async (employee: Employee) => {
+  const handleToggleStatus = async (employee) => {
     try {
       const { error } = await supabase
         .from('profiles')
@@ -155,7 +145,7 @@ export default function Employees() {
     employee.role.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
-  const getRoleBadgeVariant = (role: string) => {
+  const getRoleBadgeVariant = (role) => {
     switch (role) {
       case 'owner': return 'default';
       case 'admin': return 'secondary';
@@ -254,7 +244,7 @@ export default function Employees() {
 
               <div>
                 <Label htmlFor="role">Role</Label>
-                <Select value={role} onValueChange={(value) => setRole(value as 'admin' | 'kasir' | 'owner')}>
+                <Select value={role} onValueChange={(value) => setRole(value)}>
                   <SelectTrigger>
                     <SelectValue placeholder="Pilih role" />
                   </SelectTrigger>

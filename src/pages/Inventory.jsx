@@ -12,34 +12,11 @@ import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
-interface Product {
-  id: string;
-  name: string;
-  stock: number;
-  min_stock: number;
-  unit: string;
-  category_id: string;
-  categories?: {
-    name: string;
-  };
-}
-
-interface StockMovement {
-  id: string;
-  type: string;
-  quantity: number;
-  notes: string;
-  created_at: string;
-  products: {
-    name: string;
-  };
-}
-
 export default function Inventory() {
   const { profile } = useAuth();
   const { toast } = useToast();
-  const [products, setProducts] = useState<Product[]>([]);
-  const [stockMovements, setStockMovements] = useState<StockMovement[]>([]);
+  const [products, setProducts] = useState([]);
+  const [stockMovements, setStockMovements] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedProduct, setSelectedProduct] = useState('');
   const [movementType, setMovementType] = useState('');
@@ -172,10 +149,10 @@ export default function Inventory() {
 
   const lowStockProducts = products.filter(product => product.stock <= product.min_stock);
 
-  const getStockStatus = (stock: number, minStock: number) => {
-    if (stock === 0) return { label: 'Habis', variant: 'destructive' as const };
-    if (stock <= minStock) return { label: 'Rendah', variant: 'secondary' as const };
-    return { label: 'Normal', variant: 'default' as const };
+  const getStockStatus = (stock, minStock) => {
+    if (stock === 0) return { label: 'Habis', variant: 'destructive' };
+    if (stock <= minStock) return { label: 'Rendah', variant: 'secondary' };
+    return { label: 'Normal', variant: 'default' };
   };
 
   if (loading) {

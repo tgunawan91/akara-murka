@@ -34,39 +34,15 @@ import {
   DialogTitle,
 } from '@/components/ui/dialog';
 
-interface Transaction {
-  id: string;
-  transaction_number: string;
-  total_amount: number;
-  payment_method: 'tunai' | 'kartu_debit' | 'kartu_kredit' | 'transfer' | 'qris';
-  status: 'completed' | 'pending' | 'cancelled';
-  created_at: string;
-  customer_id?: string;
-  customers?: {
-    name: string;
-    phone?: string;
-  };
-  transaction_items: {
-    id: string;
-    quantity: number;
-    unit_price: number;
-    total_price: number;
-    products: {
-      name: string;
-      unit?: string;
-    };
-  }[];
-}
-
 const Transactions = () => {
   const { profile } = useAuth();
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
+  const [transactions, setTransactions] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
-  const [selectedTransaction, setSelectedTransaction] = useState<Transaction | null>(null);
+  const [selectedTransaction, setSelectedTransaction] = useState(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [statusFilter, setStatusFilter] = useState<string>('all');
-  const [paymentFilter, setPaymentFilter] = useState<string>('all');
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [paymentFilter, setPaymentFilter] = useState('all');
 
   useEffect(() => {
     fetchTransactions();
@@ -92,12 +68,12 @@ const Transactions = () => {
     setLoading(false);
   };
 
-  const openTransactionDetail = (transaction: Transaction) => {
+  const openTransactionDetail = (transaction) => {
     setSelectedTransaction(transaction);
     setIsDetailOpen(true);
   };
 
-  const getPaymentMethodIcon = (method: string) => {
+  const getPaymentMethodIcon = (method) => {
     switch (method) {
       case 'tunai':
         return <Banknote className="h-4 w-4" />;
@@ -112,7 +88,7 @@ const Transactions = () => {
     }
   };
 
-  const getPaymentMethodLabel = (method: string) => {
+  const getPaymentMethodLabel = (method) => {
     switch (method) {
       case 'tunai':
         return 'Tunai';
@@ -129,7 +105,7 @@ const Transactions = () => {
     }
   };
 
-  const getStatusBadge = (status: string) => {
+  const getStatusBadge = (status) => {
     switch (status) {
       case 'completed':
         return <Badge className="bg-success text-success-foreground">Selesai</Badge>;

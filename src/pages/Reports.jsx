@@ -11,36 +11,11 @@ import { useToast } from '@/hooks/use-toast';
 import { formatCurrency } from '@/lib/utils';
 import * as XLSX from 'xlsx';
 
-interface SalesReport {
-  total_revenue: number;
-  total_transactions: number;
-  avg_transaction: number;
-  total_products_sold: number;
-  total_cost: number;
-  gross_profit: number;
-  profit_margin: number;
-}
-
-interface ProductSales {
-  product_name: string;
-  quantity_sold: number;
-  revenue: number;
-  cost: number;
-  profit: number;
-  profit_margin: number;
-}
-
-interface DailySales {
-  date: string;
-  revenue: number;
-  transactions: number;
-}
-
 export default function Reports() {
   const { profile } = useAuth();
   const { toast } = useToast();
   const [period, setPeriod] = useState('today');
-  const [salesReport, setSalesReport] = useState<SalesReport>({
+  const [salesReport, setSalesReport] = useState({
     total_revenue: 0,
     total_transactions: 0,
     avg_transaction: 0,
@@ -49,8 +24,8 @@ export default function Reports() {
     gross_profit: 0,
     profit_margin: 0
   });
-  const [productSales, setProductSales] = useState<ProductSales[]>([]);
-  const [dailySales, setDailySales] = useState<DailySales[]>([]);
+  const [productSales, setProductSales] = useState([]);
+  const [dailySales, setDailySales] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -142,7 +117,7 @@ export default function Reports() {
       });
 
       // Calculate product sales with profit analysis
-      const productSalesMap = new Map<string, { quantity: number; revenue: number; cost: number }>();
+      const productSalesMap = new Map();
       productData?.forEach(item => {
         const productName = item.products?.name || 'Unknown';
         const costPrice = Number(item.products?.cost_price) || 0;
@@ -171,7 +146,7 @@ export default function Reports() {
 
       // For daily sales, we'll create mock data for now
       // In a real app, you'd group transactions by date
-      const mockDailySales: DailySales[] = [];
+      const mockDailySales = [];
       for (let i = 6; i >= 0; i--) {
         const date = new Date(Date.now() - i * 24 * 60 * 60 * 1000);
         const dayRevenue = totalRevenue * Math.random() * 0.3; // Mock data

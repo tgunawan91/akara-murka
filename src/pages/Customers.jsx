@@ -25,24 +25,13 @@ import {
   TableRow,
 } from '@/components/ui/table';
 
-interface Customer {
-  id: string;
-  name: string;
-  email?: string;
-  phone?: string;
-  address?: string;
-  total_purchases?: number;
-  last_purchase_at?: string;
-  created_at: string;
-}
-
 const Customers = () => {
   const { profile } = useAuth();
   const { toast } = useToast();
-  const [customers, setCustomers] = useState<Customer[]>([]);
+  const [customers, setCustomers] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [editingCustomer, setEditingCustomer] = useState<Customer | null>(null);
+  const [editingCustomer, setEditingCustomer] = useState(null);
   const [loading, setLoading] = useState(true);
 
   const [formData, setFormData] = useState({
@@ -79,7 +68,7 @@ const Customers = () => {
     setEditingCustomer(null);
   };
 
-  const openDialog = (customer?: Customer) => {
+  const openDialog = (customer) => {
     if (customer) {
       setEditingCustomer(customer);
       setFormData({
@@ -99,7 +88,7 @@ const Customers = () => {
     resetForm();
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -148,7 +137,7 @@ const Customers = () => {
     }
   };
 
-  const deleteCustomer = async (customerId: string) => {
+  const deleteCustomer = async (customerId) => {
     if (!confirm('Apakah Anda yakin ingin menghapus data pelanggan ini?')) return;
 
     try {

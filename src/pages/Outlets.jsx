@@ -13,24 +13,14 @@ import { useAuth } from '@/contexts/AuthContext';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 
-interface Outlet {
-  id: string;
-  name: string;
-  address: string;
-  phone: string;
-  is_active: boolean;
-  created_at: string;
-  owner_id: string;
-}
-
 export default function Outlets() {
   const { profile, user } = useAuth();
   const { toast } = useToast();
-  const [outlets, setOutlets] = useState<Outlet[]>([]);
+  const [outlets, setOutlets] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [loading, setLoading] = useState(true);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
-  const [editingOutlet, setEditingOutlet] = useState<Outlet | null>(null);
+  const [editingOutlet, setEditingOutlet] = useState(null);
   
   // Form states
   const [name, setName] = useState('');
@@ -119,7 +109,7 @@ export default function Outlets() {
     }
   };
 
-  const handleEdit = (outlet: Outlet) => {
+  const handleEdit = (outlet) => {
     setEditingOutlet(outlet);
     setName(outlet.name);
     setAddress(outlet.address || '');
