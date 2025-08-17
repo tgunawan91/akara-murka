@@ -2,132 +2,164 @@
 @tailwind components;
 @tailwind utilities;
 
-/* POS System Design System - Professional retail colors and tokens */
+/* POS System Design System - Modern professional retail interface */
 
 @layer base {
   :root {
-    /* Base colors */
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base colors - Clean white background with dark text */
+    --background: 0 0% 99%;
+    --foreground: 224 71% 4%;
 
-    /* Card colors */
+    /* Card colors - Slightly off-white with subtle shadow */
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 224 71% 4%;
 
     /* Popover colors */
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 224 71% 4%;
 
-    /* Primary brand colors - Professional blue */
-    --primary: 217 89% 20%;
+    /* Primary brand colors - Modern blue with depth */
+    --primary: 221 83% 53%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 217 89% 25%;
+    --primary-hover: 221 83% 48%;
+    --primary-glow: 221 83% 65%;
 
-    /* Secondary colors - Light blue/gray */
-    --secondary: 217 32% 96%;
-    --secondary-foreground: 217 32% 17%;
+    /* Secondary colors - Sophisticated gray-blue */
+    --secondary: 220 14% 96%;
+    --secondary-foreground: 220 9% 46%;
 
-    /* Success colors - Green for positive actions */
-    --success: 142 71% 45%;
+    /* Success colors - Fresh green for positive actions */
+    --success: 142 76% 36%;
     --success-foreground: 0 0% 100%;
-    --success-hover: 142 71% 40%;
+    --success-hover: 142 76% 31%;
+    --success-light: 142 76% 95%;
 
-    /* Warning colors - Orange for warnings */
-    --warning: 35 91% 62%;
+    /* Warning colors - Warm orange for warnings */
+    --warning: 25 95% 53%;
     --warning-foreground: 0 0% 100%;
+    --warning-light: 25 95% 95%;
 
-    /* Muted colors */
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted colors - Subtle gray tones */
+    --muted: 220 14% 96%;
+    --muted-foreground: 220 9% 46%;
 
-    /* Accent colors */
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent colors - Light interaction states */
+    --accent: 220 14% 96%;
+    --accent-foreground: 220 9% 15%;
 
-    /* Destructive colors - Red for dangerous actions */
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Destructive colors - Clear red for dangerous actions */
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    --destructive-light: 0 84% 95%;
 
-    /* Border and input */
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 217 89% 20%;
+    /* Border and input - Refined borders */
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 221 83% 53%;
 
-    /* Border radius */
-    --radius: 0.5rem;
+    /* Border radius - Consistent rounded corners */
+    --radius: 0.75rem;
 
-    /* Sidebar colors - Dark sidebar for navigation */
-    --sidebar-background: 222 47% 11%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 217 89% 20%;
+    /* Shadows - Professional depth */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+
+    /* Gradients - Subtle and elegant */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--muted) / 0.3));
+
+    /* Sidebar colors - Modern dark sidebar */
+    --sidebar-background: 224 71% 4%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 221 83% 53%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 222 47% 15%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 222 47% 17%;
-    --sidebar-ring: 217 89% 20%;
+    --sidebar-accent: 224 71% 8%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 224 71% 12%;
+    --sidebar-ring: 221 83% 53%;
 
-    /* POS specific colors */
-    --pos-cash: 142 71% 45%;
-    --pos-card: 217 89% 20%;
-    --pos-transfer: 266 85% 58%;
-    --pos-pending: 35 91% 62%;
-    --pos-completed: 142 71% 45%;
+    /* POS specific colors - Clear transaction states */
+    --pos-cash: 142 76% 36%;
+    --pos-card: 221 83% 53%;
+    --pos-transfer: 262 83% 58%;
+    --pos-pending: 25 95% 53%;
+    --pos-completed: 142 76% 36%;
     --pos-cancelled: 0 84% 60%;
   }
 
   .dark {
-    /* Dark mode colors */
-    --background: 222 47% 11%;
-    --foreground: 210 40% 98%;
+    /* Dark mode colors - Deep, rich dark theme */
+    --background: 224 71% 4%;
+    --foreground: 0 0% 98%;
 
-    --card: 222 47% 11%;
-    --card-foreground: 210 40% 98%;
+    --card: 224 71% 6%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 222 47% 11%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 224 71% 6%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 217 89% 45%;
+    --primary: 221 83% 58%;
     --primary-foreground: 0 0% 100%;
-    --primary-hover: 217 89% 50%;
+    --primary-hover: 221 83% 63%;
+    --primary-glow: 221 83% 70%;
 
-    --secondary: 217 32% 17%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 224 71% 10%;
+    --secondary-foreground: 0 0% 98%;
 
-    --success: 142 71% 45%;
+    --success: 142 76% 41%;
     --success-foreground: 0 0% 100%;
-    --success-hover: 142 71% 50%;
+    --success-hover: 142 76% 46%;
+    --success-light: 142 76% 15%;
 
-    --warning: 35 91% 62%;
+    --warning: 25 95% 58%;
     --warning-foreground: 0 0% 100%;
+    --warning-light: 25 95% 15%;
 
-    --muted: 217 32% 17%;
-    --muted-foreground: 215 20% 65%;
+    --muted: 224 71% 10%;
+    --muted-foreground: 0 0% 65%;
 
-    --accent: 217 32% 17%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 224 71% 10%;
+    --accent-foreground: 0 0% 98%;
 
-    --destructive: 0 62% 50%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 84% 65%;
+    --destructive-foreground: 0 0% 100%;
+    --destructive-light: 0 84% 15%;
 
-    --border: 217 32% 17%;
-    --input: 217 32% 17%;
-    --ring: 217 89% 45%;
+    --border: 224 71% 12%;
+    --input: 224 71% 12%;
+    --ring: 221 83% 58%;
 
-    --sidebar-background: 222 47% 8%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 217 89% 45%;
+    /* Shadows - Adjusted for dark mode */
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.3), 0 1px 2px -1px rgb(0 0 0 / 0.3);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.3), 0 2px 4px -2px rgb(0 0 0 / 0.3);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.3), 0 4px 6px -4px rgb(0 0 0 / 0.3);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.3), 0 8px 10px -6px rgb(0 0 0 / 0.3);
+
+    /* Gradients - Dark mode variants */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--primary-glow)));
+    --gradient-subtle: linear-gradient(180deg, hsl(var(--background)), hsl(var(--muted)));
+    --gradient-card: linear-gradient(145deg, hsl(var(--card)), hsl(var(--muted) / 0.5));
+
+    --sidebar-background: 224 71% 2%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-primary: 221 83% 58%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 222 47% 12%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 222 47% 15%;
-    --sidebar-ring: 217 89% 45%;
+    --sidebar-accent: 224 71% 6%;
+    --sidebar-accent-foreground: 0 0% 98%;
+    --sidebar-border: 224 71% 8%;
+    --sidebar-ring: 221 83% 58%;
 
-    --pos-cash: 142 71% 45%;
-    --pos-card: 217 89% 45%;
-    --pos-transfer: 266 85% 58%;
-    --pos-pending: 35 91% 62%;
-    --pos-completed: 142 71% 45%;
-    --pos-cancelled: 0 62% 50%;
+    --pos-cash: 142 76% 41%;
+    --pos-card: 221 83% 58%;
+    --pos-transfer: 262 83% 63%;
+    --pos-pending: 25 95% 58%;
+    --pos-completed: 142 76% 41%;
+    --pos-cancelled: 0 84% 65%;
   }
 }
 
@@ -137,6 +169,133 @@
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@layer components {
+  /* Enhanced card shadows and styling */
+  .card-enhanced {
+    @apply bg-card text-card-foreground rounded-xl border border-border/50 backdrop-blur-sm;
+    box-shadow: var(--shadow-md);
+    background: var(--gradient-card);
+  }
+
+  .card-enhanced:hover {
+    @apply border-border;
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Elegant button styles */
+  .btn-primary-enhanced {
+    @apply bg-primary text-primary-foreground hover:bg-primary-hover;
+    background: var(--gradient-primary);
+    box-shadow: var(--shadow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .btn-primary-enhanced:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-1px);
+  }
+
+  /* Glass effect for modern look */
+  .glass-effect {
+    @apply backdrop-blur-md bg-white/70 dark:bg-black/70 border border-white/20 dark:border-white/10;
+    box-shadow: var(--shadow-xl);
+  }
+
+  /* Smooth animations */
+  .animate-fade-in {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  .animate-slide-up {
+    animation: slideUp 0.5s ease-out;
+  }
+
+  .animate-scale-in {
+    animation: scaleIn 0.3s ease-out;
+  }
+
+  /* Interactive elements */
+  .interactive-hover {
+    @apply transition-all duration-300 ease-out;
+  }
+
+  .interactive-hover:hover {
+    @apply scale-105;
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Loading skeleton */
+  .skeleton {
+    @apply animate-pulse bg-muted rounded;
+  }
+}
+
+@layer utilities {
+  /* Custom animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes scaleIn {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Modern shadows */
+  .shadow-elegant {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .shadow-float {
+    box-shadow: var(--shadow-xl);
+  }
+
+  /* Smooth transitions */
+  .transition-smooth {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 }
